@@ -16,7 +16,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,7 +31,7 @@
       --line:      #E1DBCF;
       --radius:    18px;
       --serif: "Playfair Display", Georgia, serif;
-      --sans:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --sans:  "Mukta", -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -173,6 +173,24 @@
     .card .c-shloka { font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.4; margin: 20px 0 10px; }
     .card .c-sub { font-size: 13px; opacity: 0.85; }
 
+    /* Languages */
+    .lang-groups { display: flex; flex-direction: column; gap: 34px; max-width: 780px; margin: 0 auto; }
+    .lang-block { text-align: center; }
+    .lang-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .lang-label.available { color: var(--sage-deep); }
+    .lang-label.soon { color: var(--ink-soft); }
+    .lang-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .lang-pill {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      font-size: 17px; font-weight: 500; padding: 10px 18px; border-radius: 999px;
+      background: var(--sand); border: 1px solid var(--line);
+    }
+    .band .lang-pill { background: #fff; }
+    .lang-pill em { font-style: normal; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.02em; }
+    .lang-pill.on { background: var(--sage); color: #fff; border-color: transparent; }
+    .lang-pill.on em { color: rgba(255,255,255,0.82); }
+    .lang-note { text-align: center; margin-top: 28px; font-size: 14px; color: var(--ink-soft); }
+
     /* Share row */
     .share { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 64px; }
     .share-copy h3 { font-size: 26px; margin-bottom: 12px; }
@@ -261,7 +279,7 @@
             <span><span class="sm">Get it on</span><span class="lg">Google Play</span></span>
           </a>
         </div>
-        <p class="hero-note">Free to start · No account needed · Widget for iOS &amp; Android</p>
+        <p class="hero-note">Free to start · Now in English &amp; हिन्दी · Widget for iOS &amp; Android</p>
       </div>
 
       <!-- Phone mockups -->
@@ -398,8 +416,40 @@
     </div>
   </section>
 
+  <!-- ===== Languages ===== -->
+  <section class="band" id="languages">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="text-align:center;">In your language</p>
+        <h2>Wisdom that speaks your mother tongue</h2>
+        <p>The shlokas stay in their original Sanskrit; the meaning is yours to read in the language you think in.</p>
+      </div>
+      <div class="lang-groups">
+        <div class="lang-block">
+          <p class="lang-label available">Available now</p>
+          <div class="lang-list">
+            <span class="lang-pill on">English</span>
+            <span class="lang-pill on">हिन्दी <em>Hindi</em></span>
+          </div>
+        </div>
+        <div class="lang-block">
+          <p class="lang-label soon">Coming soon</p>
+          <div class="lang-list">
+            <span class="lang-pill">தமிழ் <em>Tamil</em></span>
+            <span class="lang-pill">తెలుగు <em>Telugu</em></span>
+            <span class="lang-pill">ಕನ್ನಡ <em>Kannada</em></span>
+            <span class="lang-pill">मराठी <em>Marathi</em></span>
+            <span class="lang-pill">বাংলা <em>Bengali</em></span>
+            <span class="lang-pill">ગુજરાતી <em>Gujarati</em></span>
+          </div>
+        </div>
+      </div>
+      <p class="lang-note">Want Daily Gita in a language not listed here? <a href="mailto:hello@dailygita.app" style="color:var(--terra-deep);font-weight:500;">Tell us</a> and we'll prioritise it.</p>
+    </div>
+  </section>
+
   <!-- ===== Bottom CTA ===== -->
-  <section class="final band">
+  <section class="final">
     <div class="wrap">
       <div class="final-card">
         <p class="eyebrow" style="color:var(--sage);">Take a moment for yourself today</p>
@@ -429,8 +479,8 @@
         <span>Daily Gita</span>
       </a>
       <nav class="foot-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
         <a href="mailto:hello@dailygita.app">hello@dailygita.app</a>
       </nav>
       <p class="foot-copy">© 2026 Daily Gita · Built by Nikita Upreti · Made with care for a calmer day.</p>
