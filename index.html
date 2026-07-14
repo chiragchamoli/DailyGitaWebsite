@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Gita · Ancient Wisdom on Your Home Screen</title>
+  <meta name="description" content="Start your day with beautifully designed shlokas, translations, and actionable life lessons from the Bhagavad Gita, right from your home screen widget.">
+
+  <!-- Favicons -->
+  <link rel="icon" href="dailygita-icons/favicon.ico" sizes="any">
+  <link rel="icon" href="dailygita-icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="dailygita-icons/apple-touch-icon.png">
+  <link rel="manifest" href="dailygita-icons/site.webmanifest">
+  <meta name="theme-color" content="#F4F1EA">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sand:      #F4F1EA;
+      --sand-deep: #EAE5DA;
+      --sage:      #8CA192;
+      --sage-deep: #6E8375;
+      --terra:     #C27C67;
+      --terra-deep:#A9634F;
+      --ink:       #38352F;
+      --ink-soft:  #6B665C;
+      --line:      #E1DBCF;
+      --radius:    18px;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans:  "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--sand);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .eyebrow {
+      font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--sage-deep); font-weight: 600; margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(244,241,234,0.94);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .brand img { width: 32px; height: 32px; border-radius: 8px; }
+    .brand span { font-size: 17px; letter-spacing: -0.01em; }
+    .nav-cta {
+      font-size: 14px; font-weight: 600; color: var(--terra-deep);
+      padding: 8px 16px; border: 1px solid var(--terra); border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--terra); color: #fff; }
+
+    /* ---------- Buttons ---------- */
+    .stores { display: flex; flex-wrap: wrap; gap: 12px; }
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 11px;
+      background: var(--ink); color: var(--sand);
+      padding: 12px 20px; border-radius: 12px;
+      transition: transform 0.15s ease, opacity 0.2s;
+    }
+    .store-btn:hover { transform: translateY(-2px); opacity: 0.92; }
+    .store-btn svg { width: 24px; height: 24px; flex: none; }
+    .store-btn .sm { display: block; font-size: 10px; letter-spacing: 0.04em; opacity: 0.75; line-height: 1.2; }
+    .store-btn .lg { display: block; font-size: 16px; font-weight: 600; line-height: 1.2; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 72px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+    .hero h1 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 20px; }
+    .hero h1 .accent { color: var(--terra-deep); }
+    .hero p.sub { font-size: clamp(16px, 2vw, 19px); color: var(--ink-soft); max-width: 30ch; margin-bottom: 32px; }
+    .hero-note { margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
+
+    /* ---------- Phone mockups ---------- */
+    .phones { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 18px; min-height: 460px; }
+    .phone {
+      width: 214px; border-radius: 38px; padding: 10px;
+      background: linear-gradient(160deg, #2c2a26, #45413a);
+      box-shadow: 0 30px 60px -24px rgba(56,53,47,0.55);
+    }
+    .phone.ios { transform: translateY(-24px) rotate(-3deg); z-index: 2; }
+    .phone.android { transform: translateY(8px) rotate(3deg); }
+    .screen {
+      border-radius: 30px; overflow: hidden; background: var(--sand);
+      aspect-ratio: 9 / 19; position: relative;
+      display: flex; flex-direction: column;
+    }
+    .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px 4px; font-size: 11px; font-weight: 600; color: var(--ink); }
+    .status-bar .dots { display: flex; gap: 3px; }
+    .status-bar .dots i { width: 4px; height: 4px; border-radius: 50%; background: var(--ink); opacity: 0.55; }
+    .os-label { text-align: center; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); padding: 2px 0 6px; }
+
+    /* Widget card (the star of the show) */
+    .widget {
+      margin: 8px 14px; background: #fff; border-radius: 20px;
+      padding: 16px; box-shadow: 0 8px 22px -12px rgba(56,53,47,0.4);
+      border: 1px solid var(--line);
+    }
+    .widget-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .widget-top .mini { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; color: var(--sage-deep); text-transform: uppercase; letter-spacing: 0.08em; }
+    .widget-top .mini img { width: 16px; height: 16px; }
+    .widget-top .num { font-size: 10px; color: var(--ink-soft); }
+    .shloka { font-family: var(--serif); font-size: 14px; line-height: 1.5; color: var(--ink); font-style: italic; margin-bottom: 8px; }
+    .translit { font-size: 11px; color: var(--terra-deep); font-weight: 500; margin-bottom: 4px; }
+    .lesson { font-size: 11px; color: var(--ink-soft); line-height: 1.5; }
+    .widget-actions { display: flex; gap: 14px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .widget-actions svg { width: 15px; height: 15px; color: var(--sage-deep); }
+
+    .app-dots { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 16px 24px 22px; }
+    .app-dots i { aspect-ratio: 1; border-radius: 12px; background: var(--sand-deep); }
+    .app-dots i.brandapp { background: var(--terra); background-image: radial-gradient(circle at 50% 50%, var(--sage) 22%, transparent 24%); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 72px 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+    .section-head h2 { font-size: clamp(26px, 3.4vw, 36px); margin-bottom: 14px; }
+    .section-head p { color: var(--ink-soft); font-size: 17px; }
+
+    .band { background: var(--sand-deep); }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step {
+      background: var(--sand); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 30px 26px;
+    }
+    .band .step { background: #fff; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      font-family: var(--serif); font-size: 19px; font-weight: 600;
+      background: var(--sage); color: #fff; margin-bottom: 18px;
+    }
+    .step:nth-child(2) .step-num { background: var(--terra); }
+    .step:nth-child(3) .step-num { background: var(--sage-deep); }
+    .step h3 { font-size: 19px; margin-bottom: 8px; }
+    .step p { color: var(--ink-soft); font-size: 15px; }
+
+    /* Feature cards grid */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      border-radius: var(--radius); padding: 28px 24px; min-height: 260px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border: 1px solid rgba(56,53,47,0.06);
+    }
+    .card.sage  { background: var(--sage); color: #fff; }
+    .card.terra { background: var(--terra); color: #fff; }
+    .card.sand  { background: var(--sand-deep); color: var(--ink); }
+    .card .c-mandala { width: 40px; height: 40px; opacity: 0.9; margin-bottom: auto; }
+    .card .c-shloka { font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.4; margin: 20px 0 10px; }
+    .card .c-sub { font-size: 13px; opacity: 0.85; }
+
+    /* Share row */
+    .share { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 64px; }
+    .share-copy h3 { font-size: 26px; margin-bottom: 12px; }
+    .share-copy p { color: var(--ink-soft); font-size: 16px; margin-bottom: 20px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 999px; background: var(--sand); border: 1px solid var(--line); }
+    .share-visual { display: flex; justify-content: center; }
+    .story {
+      width: 230px; aspect-ratio: 9/16; border-radius: 26px; padding: 22px;
+      background: linear-gradient(165deg, var(--sage), var(--sage-deep));
+      color: #fff; display: flex; flex-direction: column; justify-content: center; text-align: center;
+      box-shadow: 0 24px 50px -22px rgba(110,131,117,0.7);
+      position: relative;
+    }
+    .story img { width: 46px; height: 46px; margin: 0 auto 20px; opacity: 0.95; }
+    .story .s-text { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.4; }
+    .story .s-attr { margin-top: 18px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+    .story .s-badge {
+      position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+      font-size: 11px; opacity: 0.8; display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Bottom CTA */
+    .final { text-align: center; }
+    .final-card {
+      background: var(--ink); color: var(--sand); border-radius: 28px;
+      padding: 64px 32px; max-width: 780px; margin: 0 auto;
+    }
+    .final-card h2 { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 4vw, 40px); font-weight: 500; margin-bottom: 14px; }
+    .final-card p { color: rgba(244,241,234,0.72); font-size: 17px; margin-bottom: 30px; }
+    .final-card .stores { justify-content: center; }
+    .final-card .store-btn { background: var(--sand); color: var(--ink); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 40px 0; }
+    .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .foot .brand span { font-size: 15px; }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; color: var(--ink-soft); }
+    .foot-links a:hover { color: var(--terra-deep); }
+    .foot-copy { width: 100%; font-size: 13px; color: var(--ink-soft); padding-top: 8px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero p.sub { max-width: 40ch; }
+      .steps, .cards { grid-template-columns: 1fr; }
+      .share { grid-template-columns: 1fr; gap: 32px; }
+      .share-visual { order: -1; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 460px) {
+      .phone { width: 178px; }
+      .phones { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <img src="dailygita-icons/apple-touch-icon.png" alt="Daily Gita logo">
+        <span>Daily Gita</span>
+      </a>
+      <a class="nav-cta" href="#download">Download</a>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Bhagavad Gita · Daily</p>
+        <h1>Ancient wisdom on your <span class="accent">home screen.</span></h1>
+        <p class="sub">Start your day with beautifully designed shlokas, translations, and actionable life lessons from the Bhagavad Gita.</p>
+        <div class="stores" id="download">
+          <!-- PLACEHOLDER: replace href with App Store link -->
+          <a class="store-btn" href="#" aria-label="Download on the App Store">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.42 2.19-1.12 2.97-.79.9-2.07 1.6-3.31 1.5-.14-1.1.4-2.27 1.06-3 .74-.83 2.05-1.44 3.14-1.47.03.13.03.27.03.4v.6zM20.5 17.1c-.55 1.27-.81 1.83-1.52 2.95-1 1.57-2.4 3.53-4.14 3.55-1.55.02-1.94-1.01-4.03-1-2.1.01-2.53 1.02-4.08 1-.19 0-.37-.02-.55-.05C4.6 22.3 3.2 20.5 2.2 18.95.4 16.2-.13 12.83.72 10.6c.6-1.6 1.87-2.62 3.4-2.62 1.5 0 2.44 1 4.03 1 1.54 0 2.48-1 4.22-1 1.36 0 2.8.74 3.83 2.02-3.36 1.84-2.82 6.63.5 8.1z"/></svg>
+            <span><span class="sm">Download on the</span><span class="lg">App Store</span></span>
+          </a>
+          <!-- PLACEHOLDER: replace href with Play Store link -->
+          <a class="store-btn" href="#" aria-label="Get it on Google Play">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.1c-.3.3-.5.7-.5 1.3v17.2c0 .6.2 1 .5 1.3l.1.1L13 12.7v-.2L3.7 2l-.1.1zm12.8 8.6l-3.1-3.1 2.4-1.4c1.9-1.1 3.4-1.9 3.5-2 .4-.2.8-.5 1.1-.8.1.1-3.9 6.3-3.9 7.3zm-3.1 4.4l3.1-3.1 3.9 7.3c-.3-.3-.7-.6-1.1-.8-.1-.1-1.6-.9-3.5-2l-2.4-1.4zm-1-1l-9.3 9.3c.4.3 1 .3 1.7-.1.6-.3 8.3-4.7 8.3-4.7l-.7-4.5z"/></svg>
+            <span><span class="sm">Get it on</span><span class="lg">Google Play</span></span>
+          </a>
+        </div>
+        <p class="hero-note">Free to start · No account needed · Widget for iOS &amp; Android</p>
+      </div>
+
+      <!-- Phone mockups -->
+      <div class="phones">
+        <!-- iOS -->
+        <div class="phone ios">
+          <div class="screen">
+            <div class="status-bar"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="os-label">iOS · Home Screen</div>
+            <div class="widget">
+              <div class="widget-top">
+                <span class="mini"><img src="dailygita-icons/favicon.svg" alt="">Daily Gita</span>
+                <span class="num">2.47</span>
+              </div>
+              <p class="shloka">You have the right to work, but never to the fruit of the work.</p>
+              <p class="translit">karmaṇy-evādhikāras te</p>
+              <p class="lesson">Act with devotion. Release attachment to the outcome.</p>
+              <div class="widget-actions">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+              </div>
+            </div>
+            <div class="app-dots"><i class="brandapp"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <!-- Android -->
+        <div class="phone android">
+          <div class="screen">
+            <div class="status-bar"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="os-label">Android · Home Screen</div>
+            <div class="widget">
+              <div class="widget-top">
+                <span class="mini"><img src="dailygita-icons/favicon.svg" alt="">Daily Gita</span>
+                <span class="num">6.35</span>
+              </div>
+              <p class="shloka">The mind is restless, but it can be stilled by practice.</p>
+              <p class="translit">abhyāsena tu kaunteya</p>
+              <p class="lesson">Steadiness is built one calm breath at a time.</p>
+              <div class="widget-actions">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+              </div>
+            </div>
+            <div class="app-dots"><i></i><i class="brandapp"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works ===== -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="text-align:center;">How it works</p>
+        <h2>Peace, in three simple steps</h2>
+        <p>Set it once and let a moment of stillness find you through the day.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Set your intention</h3>
+          <p>Choose how often you want to receive a shloka: 1×, 3×, or 5× a day.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Match your vibe</h3>
+          <p>Select from calming, minimalist themes and hand-picked illustrations.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Find your peace</h3>
+          <p>Read, save, and share daily cards right from your home screen widget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Feature showcase ===== -->
+  <section id="cards">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="text-align:center;">A card for every mood</p>
+        <h2>Beautifully designed, every single day</h2>
+        <p>Timeless text, muted backgrounds, and thoughtful illustrations, made to be read and to be shared.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card sage">
+          <img class="c-mandala" src="dailygita-icons/favicon.svg" alt="">
+          <div>
+            <p class="c-shloka">Set thy heart upon thy work, but never on its reward.</p>
+            <p class="c-sub">Chapter 2 · Verse 47</p>
+          </div>
+        </div>
+        <div class="card sand">
+          <img class="c-mandala" src="dailygita-icons/favicon.svg" alt="">
+          <div>
+            <p class="c-shloka">A calm mind is the truest strength.</p>
+            <p class="c-sub">Chapter 6 · Verse 35</p>
+          </div>
+        </div>
+        <div class="card terra">
+          <img class="c-mandala" src="dailygita-icons/favicon.svg" alt="">
+          <div>
+            <p class="c-shloka">Change is the only certainty; meet it with grace.</p>
+            <p class="c-sub">Chapter 2 · Verse 22</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shareability -->
+      <div class="share">
+        <div class="share-copy">
+          <p class="eyebrow">Made to share</p>
+          <h3>One tap to your Story or status</h3>
+          <p>Every card is crafted to look at home on Instagram Stories and WhatsApp status. Share a moment of wisdom and let it ripple outward.</p>
+          <div class="chips">
+            <span class="chip">📸 Instagram Story</span>
+            <span class="chip">💬 WhatsApp Status</span>
+            <span class="chip">🔗 Share link</span>
+            <span class="chip">💾 Save image</span>
+          </div>
+        </div>
+        <div class="share-visual">
+          <div class="story">
+            <img src="dailygita-icons/favicon.svg" alt="">
+            <p class="s-text">Do your duty, and let the outcome unfold.</p>
+            <p class="s-attr">Bhagavad Gita · 2.47</p>
+            <span class="s-badge">shared via Daily Gita</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Bottom CTA ===== -->
+  <section class="final band">
+    <div class="wrap">
+      <div class="final-card">
+        <p class="eyebrow" style="color:var(--sage);">Take a moment for yourself today</p>
+        <h2>Wisdom finds you. You just have to glance.</h2>
+        <p>Add the widget in seconds and let the Gita meet you where you already are.</p>
+        <div class="stores">
+          <!-- PLACEHOLDER: replace href with App Store link -->
+          <a class="store-btn" href="#" aria-label="Download on the App Store">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.42 2.19-1.12 2.97-.79.9-2.07 1.6-3.31 1.5-.14-1.1.4-2.27 1.06-3 .74-.83 2.05-1.44 3.14-1.47.03.13.03.27.03.4v.6zM20.5 17.1c-.55 1.27-.81 1.83-1.52 2.95-1 1.57-2.4 3.53-4.14 3.55-1.55.02-1.94-1.01-4.03-1-2.1.01-2.53 1.02-4.08 1-.19 0-.37-.02-.55-.05C4.6 22.3 3.2 20.5 2.2 18.95.4 16.2-.13 12.83.72 10.6c.6-1.6 1.87-2.62 3.4-2.62 1.5 0 2.44 1 4.03 1 1.54 0 2.48-1 4.22-1 1.36 0 2.8.74 3.83 2.02-3.36 1.84-2.82 6.63.5 8.1z"/></svg>
+            <span><span class="sm">Download on the</span><span class="lg">App Store</span></span>
+          </a>
+          <!-- PLACEHOLDER: replace href with Play Store link -->
+          <a class="store-btn" href="#" aria-label="Get it on Google Play">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.1c-.3.3-.5.7-.5 1.3v17.2c0 .6.2 1 .5 1.3l.1.1L13 12.7v-.2L3.7 2l-.1.1zm12.8 8.6l-3.1-3.1 2.4-1.4c1.9-1.1 3.4-1.9 3.5-2 .4-.2.8-.5 1.1-.8.1.1-3.9 6.3-3.9 7.3zm-3.1 4.4l3.1-3.1 3.9 7.3c-.3-.3-.7-.6-1.1-.8-.1-.1-1.6-.9-3.5-2l-2.4-1.4zm-1-1l-9.3 9.3c.4.3 1 .3 1.7-.1.6-.3 8.3-4.7 8.3-4.7l-.7-4.5z"/></svg>
+            <span><span class="sm">Get it on</span><span class="lg">Google Play</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="wrap foot">
+      <a class="brand" href="#top">
+        <img src="dailygita-icons/apple-touch-icon.png" alt="Daily Gita logo" style="width:28px;height:28px;border-radius:7px;">
+        <span>Daily Gita</span>
+      </a>
+      <nav class="foot-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:hello@dailygita.app">hello@dailygita.app</a>
+      </nav>
+      <p class="foot-copy">© 2026 Daily Gita · Built by Nikita Upreti · Made with care for a calmer day.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
